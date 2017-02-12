@@ -20,7 +20,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private FrameLayout fl;
     private LinearLayout ll;
-    private LinearLayout ll_homne;
+    private LinearLayout ll_home;
     private LinearLayout ll_video;
     private LinearLayout ll_follow;
     private LinearLayout ll_my;
@@ -55,7 +55,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         //最外层
         ll = (LinearLayout) findViewById(R.id.ll);
         //四个按钮层
-        ll_homne = (LinearLayout) findViewById(R.id.ll_home);
+        ll_home = (LinearLayout) findViewById(R.id.ll_home);
         ll_video = (LinearLayout) findViewById(R.id.ll_video);
         ll_follow = (LinearLayout) findViewById(R.id.ll_follow);
         ll_my = (LinearLayout) findViewById(R.id.ll_my);
@@ -69,7 +69,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         iv_video = (ImageView) findViewById(R.id.iv_video);
         iv_follow = (ImageView) findViewById(R.id.iv_follow);
         iv_my = (ImageView) findViewById(R.id.iv_my);
-        ll_homne.setOnClickListener(this);
+        ll_home.setOnClickListener(this);
         ll_video.setOnClickListener(this);
         ll_follow.setOnClickListener(this);
         ll_my.setOnClickListener(this);
