@@ -1,22 +1,35 @@
-package newtitle_huwenshuai.bwei.com;
-
+package newtitle_huwenshuai.bwei.com.activity;
 import android.graphics.Color;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener{
+import newtitle_huwenshuai.bwei.com.fragment.Fragment_Follow;
+import newtitle_huwenshuai.bwei.com.fragment.Fragment_Home;
+import newtitle_huwenshuai.bwei.com.fragment.Fragment_My;
+import newtitle_huwenshuai.bwei.com.fragment.Fragment_Video;
+
+import newtitle_huwenshuai.bwei.com.R;
+
+/**
+ * 姓名:胡文帅
+ * 时间:2017/2/16
+ * 邮箱：
+ * 备注：
+ */
+
+public class HomeActivity extends FragmentActivity implements View.OnClickListener{
 
     private FrameLayout fl;
     private LinearLayout ll;
@@ -32,14 +45,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView iv_video;
     private ImageView iv_follow;
     private ImageView iv_my;
-
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Log.i("信息","你好");
-
+        setContentView(R.layout.activity_order);
         //初始化控件
         initView();
         tv_home.setTextColor(Color.RED);
@@ -86,7 +95,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     //点击监听
-    @Override
+
     public void onClick(View v) {
         switch (v.getId())
         {
@@ -142,4 +151,24 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 break;
         }
     }
+
+    //再按退出
+    private long exitTime = 0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() ==
+                KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                        Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

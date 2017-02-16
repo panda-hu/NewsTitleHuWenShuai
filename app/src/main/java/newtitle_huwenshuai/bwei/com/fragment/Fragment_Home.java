@@ -1,10 +1,9 @@
-package newtitle_huwenshuai.bwei.com;
+package newtitle_huwenshuai.bwei.com.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +12,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.bwei.com.MyTitleFragmentAdapter;
-import titleFragment.bwei.com.TitleFragment;
+import adapter.bwei.com.fragmentadapter.MyHomeTitleFragmentAdapter;
+import newtitle_huwenshuai.bwei.com.R;
+import titleFragment.bwei.com.HomeTitleFragment;
 
 /**
  * 姓名:胡文帅
@@ -45,15 +45,15 @@ public class Fragment_Home extends Fragment{
 
         initView();
         initData();
-        MyTitleFragmentAdapter mtfAdapter= new MyTitleFragmentAdapter(getChildFragmentManager(),this,list,title);
-        vp.setAdapter(mtfAdapter);
+        MyHomeTitleFragmentAdapter mhtHomeAdapter= new MyHomeTitleFragmentAdapter(getChildFragmentManager(),this,list,title);
+        vp.setAdapter(mhtHomeAdapter);
         tl.setTabMode(TabLayout.MODE_SCROLLABLE);
         tl.setupWithViewPager(vp);
     }
 
     //加载布局
     private void initView() {
-        tl = (TabLayout) view.findViewById(R.id.tablayout_title);
+        tl = (TabLayout) view.findViewById(R.id.home_tablayout_title);
         vp = (ViewPager) view.findViewById(R.id.fragment_home_vp);
     }
 
@@ -62,7 +62,7 @@ public class Fragment_Home extends Fragment{
         list = new ArrayList<>();
         for (int i=0; i<title.length; i++)
         {
-            TitleFragment tf=new TitleFragment();
+            HomeTitleFragment tf=new HomeTitleFragment();
             list.add(tf);
         }
     }

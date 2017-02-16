@@ -1,4 +1,4 @@
-package titleFragment.bwei.com;
+package newtitle_huwenshuai.bwei.com.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,16 +11,15 @@ import newtitle_huwenshuai.bwei.com.R;
 
 /**
  * 姓名:胡文帅
- * 时间:2017/2/12
+ * 时间:2017/2/10
  * 邮箱：
- * 备注：home界面TabLayout所用Fragment
+ * 备注：关注
  */
-public class TitleFragment extends Fragment{
+public class Fragment_Follow extends Fragment{
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return View.inflate(getActivity(), R.layout.home_title_fragment,null);
+        return View.inflate(getActivity(), R.layout.activity_fragment_follow,null);
     }
 }
