@@ -9,12 +9,15 @@ import android.os.Bundle;
 
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import newtitle_huwenshuai.bwei.com.fragment.Fragment_Follow;
 import newtitle_huwenshuai.bwei.com.fragment.Fragment_Home;
 import newtitle_huwenshuai.bwei.com.fragment.Fragment_My;
@@ -30,39 +33,35 @@ import newtitle_huwenshuai.bwei.com.R;
  */
 
 public class HomeActivity extends FragmentActivity implements View.OnClickListener{
+    private LinearLayout ll_home, ll_video, ll_follow,ll_my;
+    private TextView tv_home,tv_video,tv_follow,tv_my;
+    private ImageView iv_home,iv_video,iv_follow,iv_my;
+    private List<ImageView> list_iv=new ArrayList<>();
+    private List<TextView> list_tv=new ArrayList<>();
+    private int Image_press[]={R.mipmap.b_newhome_tabbar_press,R.mipmap.b_newvideo_tabbar_press,R.mipmap.b_newcare_tabbar_press,R.mipmap.b_newnologin_tabbar_press};
+    private int Image[]={R.mipmap.b_newhome_tabbar,R.mipmap.b_newvideo_tabbar,R.mipmap.b_newcare_tabbar,R.mipmap.b_newnologin_tabbar};
+    private FragmentManager fm;
+    private FragmentTransaction transaction;
+    private Fragment_Home fg_home;
+    private Fragment_Video fg_video;
+    private Fragment_Follow fg_follow;
+    private Fragment_My fg_my;
+    private Fragment fragment;
 
-    private FrameLayout fl;
-    private LinearLayout ll;
-    private LinearLayout ll_home;
-    private LinearLayout ll_video;
-    private LinearLayout ll_follow;
-    private LinearLayout ll_my;
-    private TextView tv_home;
-    private TextView tv_video;
-    private TextView tv_follow;
-    private TextView tv_my;
-    private ImageView iv_home;
-    private ImageView iv_video;
-    private ImageView iv_follow;
-    private ImageView iv_my;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
         //初始化控件
         initView();
-        tv_home.setTextColor(Color.RED);
-        iv_home.setImageResource(R.mipmap.b_newhome_tabbar_press);
-        //添加Fragment布局
-        addFragment(new Fragment_Home());
-
+        if(fg_home==null){
+            fg_home=new Fragment_Home();
+        }
+        addFragment(fg_home);
+        reviseColor(0);
     }
 
     private void initView() {
-
-        fl = (FrameLayout) findViewById(R.id.fl);
-        //最外层
-        ll = (LinearLayout) findViewById(R.id.ll);
         //四个按钮层
         ll_home = (LinearLayout) findViewById(R.id.ll_home);
         ll_video = (LinearLayout) findViewById(R.id.ll_video);
@@ -78,78 +77,96 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         iv_video = (ImageView) findViewById(R.id.iv_video);
         iv_follow = (ImageView) findViewById(R.id.iv_follow);
         iv_my = (ImageView) findViewById(R.id.iv_my);
+
+        addContent();
+
+    }
+
+    private void addFragment(Fragment fg) {
+        //得到管理类
+        fm= getSupportFragmentManager();
+        //开启事务
+        transaction = fm.beginTransaction();
+        //赋值
+        if(fragment!=null){
+            transaction.hide(fragment);
+        }
+        if(!fg.isAdded()){
+            transaction.add(R.id.fl,fg);
+        }
+        transaction.show(fg);
+        transaction.commit();
+        fragment=fg;
+    }
+
+    private void addContent() {
+        //添加到集合里
+        list_iv.add(iv_home);
+        list_iv.add(iv_video);
+        list_iv.add(iv_follow);
+        list_iv.add(iv_my);
+
+        list_tv.add(tv_home);
+        list_tv.add(tv_video);
+        list_tv.add(tv_follow);
+        list_tv.add(tv_my);
         ll_home.setOnClickListener(this);
         ll_video.setOnClickListener(this);
         ll_follow.setOnClickListener(this);
         ll_my.setOnClickListener(this);
     }
 
-    private void addFragment(Fragment fragment) {
-
-        //管理类
-        FragmentManager fm = getSupportFragmentManager();
-        //开启一个事务
-        FragmentTransaction replace = fm.beginTransaction().replace(R.id.fl, fragment);
-        //提交事务
-        replace.commit();
+    //修改控件颜色的方法
+    private void reviseColor(int num) {
+        for (int i = 0; i <4; i++) {
+            if(i==num){
+                list_iv.get(i).setBackgroundResource(Image_press[i]);
+                list_tv.get(i).setTextColor(Color.RED);
+            }
+            else{
+                list_iv.get(i).setBackgroundResource(Image[i]);
+                list_tv.get(i).setTextColor(Color.BLACK);
+            }
+        }
     }
 
     //点击监听
-
     public void onClick(View v) {
-        switch (v.getId())
-        {
-            case R.id.ll_home:
-                addFragment(new Fragment_Home());
-                tv_home.setTextColor(Color.RED);
-                tv_video.setTextColor(Color.BLACK);
-                tv_follow.setTextColor(Color.BLACK);
-                tv_my.setTextColor(Color.BLACK);
-                iv_home.setImageResource(R.mipmap.b_newhome_tabbar_press);
-                iv_video.setImageResource(R.mipmap.b_newvideo_tabbar);
-                iv_follow.setImageResource(R.mipmap.b_newcare_tabbar);
-                iv_my.setImageResource(R.mipmap.b_newnologin_tabbar);
+        switch (v.getId()){
+            case  R.id.ll_home:
+                if (fg_home == null) {
+                    fg_home = new Fragment_Home();
+                }
+                addFragment(fg_home);
+                reviseColor(0);
                 break;
 
-            case R.id.ll_video:
-                addFragment(new Fragment_Video());
-                tv_home.setTextColor(Color.BLACK);
-                tv_video.setTextColor(Color.RED);
-                tv_follow.setTextColor(Color.BLACK);
-                tv_my.setTextColor(Color.BLACK);
-
-                iv_home.setImageResource(R.mipmap.b_newhome_tabbar);
-                iv_video.setImageResource(R.mipmap.b_newvideo_tabbar_press);
-                iv_follow.setImageResource(R.mipmap.b_newcare_tabbar);
-                iv_my.setImageResource(R.mipmap.b_newnologin_tabbar);
+            case  R.id.ll_video:
+                if (fg_video == null) {
+                    fg_video = new Fragment_Video();
+                }
+                addFragment(fg_video);
+                reviseColor(1);
                 break;
 
-            case R.id.ll_follow:
-                addFragment(new Fragment_Follow());
-                tv_home.setTextColor(Color.BLACK);
-                tv_video.setTextColor(Color.BLACK);
-                tv_follow.setTextColor(Color.RED);
-                tv_my.setTextColor(Color.BLACK);
-
-                iv_home.setImageResource(R.mipmap.b_newhome_tabbar);
-                iv_video.setImageResource(R.mipmap.b_newvideo_tabbar);
-                iv_follow.setImageResource(R.mipmap.b_newcare_tabbar_press);
-                iv_my.setImageResource(R.mipmap.b_newnologin_tabbar);
+            case  R.id.ll_follow:
+                if (fg_follow == null) {
+                    fg_follow = new Fragment_Follow();
+                }
+                addFragment(fg_follow);
+                reviseColor(2);
                 break;
 
-            case R.id.ll_my:
-                addFragment(new Fragment_My());
-                tv_home.setTextColor(Color.BLACK);
-                tv_video.setTextColor(Color.BLACK);
-                tv_follow.setTextColor(Color.BLACK);
-                tv_my.setTextColor(Color.RED);
-
-                iv_home.setImageResource(R.mipmap.b_newhome_tabbar);
-                iv_video.setImageResource(R.mipmap.b_newvideo_tabbar);
-                iv_follow.setImageResource(R.mipmap.b_newcare_tabbar);
-                iv_my.setImageResource(R.mipmap.b_newnologin_tabbar_press);
+            case  R.id.ll_my:
+                if (fg_my == null) {
+                    fg_my = new Fragment_My();
+                }
+                addFragment(fg_my);
+                JCVideoPlayer.releaseAllVideos();
+                reviseColor(3);
                 break;
         }
+
     }
 
     //再按退出

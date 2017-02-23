@@ -8,12 +8,22 @@ package utils.bwei.com;
  */
 
 public class ApplicationConstants {
-    private static int pageSize = 5;
-    public static final String APP_KEY = "a0f19c0e92c82045c9cc4f7e716e6c33";
-    public static final String URL_PICTURE = "http://japi.juhe.cn/joke/content/list.from?key="+APP_KEY;
 
-    public static  String getUrl(int currentPage){
-        String url=URL_PICTURE + "&page="+currentPage+"&pagesize="+pageSize+"&sort=asc&time="+"1418816972";
+
+    //新闻地址的拼接
+    public static final String URL_PICTURE = "http://c.m.163.com/nc/article/headline/";
+
+    public static  String getUrl(String key, int start,int end){
+        String url=URL_PICTURE +key+"/"+start+"-"+end+".html";
+        return  url;
+    }
+
+
+    //视频的地址拼接
+    public static final String URL_VIDEO = "http://c.3g.163.com/nc/video/list/";
+
+    public static  String getVideoUrl(String key, int start,int end){
+        String url=URL_VIDEO +key+"/n/"+start+"-"+end+".html";
         return  url;
     }
 }

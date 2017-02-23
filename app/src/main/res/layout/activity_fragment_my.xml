@@ -5,7 +5,7 @@
     android:orientation="vertical"
     >
 
-
+   //上部
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -13,6 +13,7 @@
         android:background="@mipmap/my_page_background"
 
         >
+        //登录按钮的父类布局
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,24 +27,11 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent">
                 <ImageView
+                    android:id="@+id/my_iv_shouji"
                     android:background="@mipmap/cellphoneicon_login_profile1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:scaleType="fitXY"
-                    android:layout_gravity="center"
-
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:background="@mipmap/weixin_allshare_normal1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="fitXY"
+                    style="@style/image_geshi"
                     android:layout_gravity="center"
                     />
             </LinearLayout>
@@ -53,18 +41,35 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:background="@mipmap/qq_allshare_normal1"
+                    android:id="@+id/my_iv_weixin"
+                    android:background="@mipmap/wixinicon_login_profile"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:scaleType="fitXY"
+                    style="@style/image_geshi"
                     android:layout_gravity="center"
                     />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/my_iv_qq"
+                    android:background="@mipmap/qqicon_login_profile"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    style="@style/image_geshi"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+
+            //箭头布局
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent">
                 <ImageView
+                    android:id="@+id/my_iv_jiantou"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@mipmap/arrow_all_normal"
@@ -76,6 +81,7 @@
 
 
             <TextView
+                android:id="@+id/my_tv_gengduo"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
@@ -91,12 +97,126 @@
     </RelativeLayout>
 
 
+    //下半部分最外层布局
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="vertical"
         >
+        //夜间等按钮布局
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            //每个按钮的小布局
+            <LinearLayout
+                android:id="@+id/my_ll_shoucang"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    style="@style/image_geshi"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/favoriteicon_profile"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="收藏"
+                    style=""
+                    android:id="@+id/textView" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/my_ll_lishi"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    style="@style/image_geshi"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/setupicon_profile"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="历史"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/my_ll_yejian"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    style="@style/image_geshi"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/nighticon_profile"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="夜间"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#f5f5f5"
+            />
+        <ListView
+            android:id="@+id/lv_my_one"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="#000000"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="#f5f5f5"
+            />
+        <ListView
+            android:id="@+id/lv_my_two"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:divider="#000000"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="#f5f5f5"
+            />
+        <ListView
+            android:id="@+id/lv_my_three"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:divider="#000000"
+            />
 
     </LinearLayout>
 </LinearLayout>

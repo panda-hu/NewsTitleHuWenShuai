@@ -36,9 +36,7 @@ public class MainActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        iv = (ImageView) findViewById(R.id.iv_not_first_run);
-        String url= "http://imgm3.cnmo-img.com.cn/appimg/screenpic/middle/987/986345.jpg";
-        ImageLoader.getInstance().displayImage(url,iv);
+        iv = (ImageView) findViewById(R.id.iv_welcome);
         handler.sendEmptyMessageDelayed(0,3000);
     }
 }

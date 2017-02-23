@@ -11,13 +11,71 @@ import java.util.List;
 
 public class MyBean {
 
-    public Result result;
-    public class Result{
-        public List<Data> data;
-        public class Data{
-            public String content;
-        }
+    private String title;
+    private String source;
+    private String imgsrc;
+    private String url;
+    private String ptime;
+    private List<ImgextraBean> imgextra;
 
+
+    public String getTitle() {
+        return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getImgsrc() {
+        return imgsrc;
+    }
+
+    public void setImgsrc(String imgsrc) {
+        this.imgsrc = imgsrc;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getPtime() {
+        return ptime;
+    }
+
+    public void setPtime(String ptime) {
+        this.ptime = ptime;
+    }
+
+    public static class ImgextraBean{
+        private String imgsrc;
+
+        public String getImgsrc() {
+            return imgsrc;
+        }
+
+        public void setImgsrc(String imgsrc) {
+            this.imgsrc = imgsrc;
+        }
+    }
+
+    public List<ImgextraBean> getImgextra() {
+        return imgextra;
+    }
+
+    public void setImgextra(List<ImgextraBean> imgextra) {
+        this.imgextra = imgextra;
+    }
 }

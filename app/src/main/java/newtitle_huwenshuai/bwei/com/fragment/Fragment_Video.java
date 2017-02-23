@@ -25,9 +25,10 @@ import titleFragment.bwei.com.VideoTitleFragment;
 public class Fragment_Video extends Fragment{
 
     private View view;
-    private String[] title={"热点","精品","搞笑","娱乐"};
-    private TabLayout tl_video;
-    private ViewPager vp_video;
+    private String[] video_title={"热点","精品","搞笑","娱乐"};
+    private String[] video_id={"V9LG4B3A0","V9LG4CHOR","V9LG4E6VR","00850FRB"};
+    private TabLayout video_tl;
+    private ViewPager video_vp;
     private List<Fragment> list;
 
     @Nullable
@@ -42,22 +43,25 @@ public class Fragment_Video extends Fragment{
         super.onActivityCreated(savedInstanceState);
         initView();
         initData();
-        MyVideoTitleFragmentAdapter mvtAdapter=new MyVideoTitleFragmentAdapter(getFragmentManager(),this, list, title);
-        vp_video.setAdapter(mvtAdapter);
-        tl_video.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tl_video.setupWithViewPager(vp_video);
+        MyVideoTitleFragmentAdapter mvtAdapter=new MyVideoTitleFragmentAdapter(getFragmentManager(),this, list, video_title);
+        video_vp.setAdapter(mvtAdapter);
+        video_tl.setTabMode(TabLayout.MODE_SCROLLABLE);
+        video_tl.setupWithViewPager(video_vp);
     }
 
     private void initData() {
         list = new ArrayList<>();
-        for (int i = 0; i < title.length; i++) {
+        for (int i = 0; i < video_title.length; i++) {
             VideoTitleFragment vtf=new VideoTitleFragment();
+            Bundle bundle=new Bundle();
+            bundle.putString("video_id",video_id[i]);
+            vtf.setArguments(bundle);
             list.add(vtf);
         }
     }
 
     private void initView() {
-        tl_video = (TabLayout) view.findViewById(R.id.voideo_tablayout_title);
-        vp_video = (ViewPager) view.findViewById(R.id.fragment_video_vp);
+        video_tl = (TabLayout) view.findViewById(R.id.video_tablayout_title);
+        video_vp = (ViewPager) view.findViewById(R.id.fragment_video_vp);
     }
 }
