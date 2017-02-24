@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ import newtitle_huwenshuai.bwei.com.fragment.Fragment_My;
 import newtitle_huwenshuai.bwei.com.fragment.Fragment_Video;
 
 import newtitle_huwenshuai.bwei.com.R;
+import utils.bwei.com.MyApplication;
 
 /**
  * 姓名:胡文帅
@@ -32,7 +34,7 @@ import newtitle_huwenshuai.bwei.com.R;
  * 备注：
  */
 
-public class HomeActivity extends FragmentActivity implements View.OnClickListener{
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener{
     private LinearLayout ll_home, ll_video, ll_follow,ll_my;
     private TextView tv_home,tv_video,tv_follow,tv_my;
     private ImageView iv_home,iv_video,iv_follow,iv_my;
@@ -54,11 +56,14 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         setContentView(R.layout.activity_order);
         //初始化控件
         initView();
-        if(fg_home==null){
-            fg_home=new Fragment_Home();
+        if(MyApplication.flag){
+            if(fg_home==null){
+                fg_home=new Fragment_Home();
+            }
+            addFragment(fg_home);
+            reviseColor(0);
+            MyApplication.flag = false;
         }
-        addFragment(fg_home);
-        reviseColor(0);
     }
 
     private void initView() {

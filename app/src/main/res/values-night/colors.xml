@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3b3b3b</color>
+    <color name="colorPrimaryDark">#383838</color>
+    <color name="colorAccent">#a72b55</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="backgroundColor">#3b3b3b</color>
+    <color name="tablayoutColor">#4f4f4f</color>
+    <color name="tablayoutTextColor">#ad5a5a</color>
+    <color name="homeTitleColor">#a72b55</color>
+</resources>

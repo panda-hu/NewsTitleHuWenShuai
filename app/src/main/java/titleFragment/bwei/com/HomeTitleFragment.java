@@ -1,6 +1,7 @@
 package titleFragment.bwei.com;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.List;
 
-import adapter.bwei.com.listviewadapter.MyXlistviewAdapter;
+import adapter.bwei.com.listviewadapter.MyHomeListViewAdapter;
 import myinterface.bwei.com.CallbackNewsData;
 import newtitle_huwenshuai.bwei.com.R;
 import newtitle_huwenshuai.bwei.com.activity.WebViewActivity;
@@ -33,7 +34,7 @@ public class HomeTitleFragment extends Fragment implements PullToRefreshListView
     private View view;
     private PullToRefreshListView ptrlv;
     private String url;
-    private MyXlistviewAdapter mxlvAdapter;
+    private MyHomeListViewAdapter mxlvAdapter;
     private boolean isNeedClear=false;
     private String id;
     private int start=0;
@@ -58,7 +59,7 @@ public class HomeTitleFragment extends Fragment implements PullToRefreshListView
     }
 
     private void initData() {
-        mxlvAdapter = new MyXlistviewAdapter(getActivity());
+        mxlvAdapter = new MyHomeListViewAdapter(getActivity());
         ptrlv.setAdapter(mxlvAdapter);
     }
 

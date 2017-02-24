@@ -59,7 +59,7 @@ public class Fragment_Home extends Fragment{
         tl = (TabLayout) view.findViewById(R.id.home_tablayout_title);
         vp = (ViewPager) view.findViewById(R.id.fragment_home_vp);
         ib = (ImageButton) view.findViewById(R.id.home_tablayout_add);
-        ib.getBackground().setAlpha(120);
+        ib.getBackground().setAlpha(248);
     }
 
     //加载数据

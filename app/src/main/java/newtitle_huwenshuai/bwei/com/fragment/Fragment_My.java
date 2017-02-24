@@ -1,8 +1,10 @@
 package newtitle_huwenshuai.bwei.com.fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.ListView;
 
 import adapter.bwei.com.listviewadapter.MyListViewItemAdapter;
 import newtitle_huwenshuai.bwei.com.R;
+import newtitle_huwenshuai.bwei.com.activity.HomeActivity;
 
 /**
  * 姓名:胡文帅
@@ -19,7 +22,7 @@ import newtitle_huwenshuai.bwei.com.R;
  * 邮箱：
  * 备注：我的
  */
-public class Fragment_My extends Fragment implements View.OnClickListener{
+public class Fragment_My extends Fragment {
 
     private View view;
     private LinearLayout ll_lishi;
@@ -35,6 +38,9 @@ public class Fragment_My extends Fragment implements View.OnClickListener{
     private String title_one[]={"消息通知"};
     private String title_two[]={"头条商城","京东特供"};
     private String title_three[]={"我要爆料","用户反馈","系统设置"};
+    private ImageView my_iv_shoucang;
+    private ImageView my_iv_lishi;
+    private ImageView my_iv_yejian;
 
     @Nullable
     @Override
@@ -52,7 +58,19 @@ public class Fragment_My extends Fragment implements View.OnClickListener{
     }
 
     private void onMyClick() {
+        my_iv_yejian.setOnClickListener(new View.OnClickListener() {
 
+
+            @Override
+            public void onClick(View v) {
+                int currentNightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                ((HomeActivity)getActivity()).getDelegate().setLocalNightMode(currentNightMode == Configuration.UI_MODE_NIGHT_NO
+                        ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+                // 同样需要调用recreate方法使之生效
+                getActivity().recreate();
+
+            }
+        });
     }
 
     private void initData() {
@@ -72,10 +90,12 @@ public class Fragment_My extends Fragment implements View.OnClickListener{
         lv_my_one = (ListView) view.findViewById(R.id.lv_my_one);
         lv_my_two = (ListView) view.findViewById(R.id.lv_my_two);
         lv_my_three = (ListView) view.findViewById(R.id.lv_my_three);
+        my_iv_shoucang = (ImageView) view.findViewById(R.id.my_iv_shoucang);
+        my_iv_lishi = (ImageView) view.findViewById(R.id.my_iv_lishi);
+        my_iv_yejian = (ImageView) view.findViewById(R.id.my_iv_yejian);
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
+
+
 }

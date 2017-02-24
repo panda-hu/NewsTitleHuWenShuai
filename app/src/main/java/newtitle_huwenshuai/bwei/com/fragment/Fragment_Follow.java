@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import newtitle_huwenshuai.bwei.com.R;
 
@@ -17,9 +18,19 @@ import newtitle_huwenshuai.bwei.com.R;
  */
 public class Fragment_Follow extends Fragment{
 
+    private View view;
+    private LinearLayout ll_friend;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return View.inflate(getActivity(), R.layout.activity_fragment_follow,null);
+        view = View.inflate(getActivity(), R.layout.activity_fragment_follow,null);
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ll_friend = (LinearLayout) view.findViewById(R.id.follow_ll_friend);
     }
 }

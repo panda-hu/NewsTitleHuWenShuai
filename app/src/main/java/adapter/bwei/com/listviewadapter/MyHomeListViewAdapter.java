@@ -23,7 +23,7 @@ import newtitle_huwenshuai.bwei.com.bean.MyBean;
  * 邮箱：
  * 备注：
  */
-public class MyXlistviewAdapter extends BaseAdapter{
+public class MyHomeListViewAdapter extends BaseAdapter{
 
     private int TYPE_1=0;
     private int TYPE_2=1;
@@ -32,7 +32,7 @@ public class MyXlistviewAdapter extends BaseAdapter{
     private List<MyBean> data=new ArrayList<>();
     private final DisplayImageOptions options;
 
-    public MyXlistviewAdapter(Context context) {
+    public MyHomeListViewAdapter(Context context) {
         this.context=context;
         options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.mipmap.not_article_loading)
